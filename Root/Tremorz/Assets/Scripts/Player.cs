@@ -15,9 +15,14 @@ public class Player : MonoBehaviour
 
     private Vector3 moveDirection = Vector3.zero;
 
+    Animator anim;
+
+    int jumpHash = Animator.StringToHash( "Jump" );
+    /*int runStateHash = Animator.StringToHash( "Base Layer.Run" );*/
+
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -34,11 +39,21 @@ public class Player : MonoBehaviour
             if( Input.GetButton( "Jump" ) )
             {
                 moveDirection.y = jumpHeight;
+                anim.SetTrigger( jumpHash );
                 isDetected = false;
             }
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move( moveDirection * Time.deltaTime );
+
+        /*float move = Input.GetAxis( "Vertical" );
+        anim.SetFloat( "Speed", move );
+
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo( 0 );
+        if( Input.GetKeyDown( KeyCode.Space ) && stateInfo.nameHash == runStateHash )
+        {
+            anim.SetTrigger( jumpHash );
+        }*/
     }
 }

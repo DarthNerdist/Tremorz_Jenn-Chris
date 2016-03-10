@@ -7,13 +7,13 @@ public class MenuScript : MonoBehaviour
     public Canvas quitMenu;
     public Button startText;
     public Button exitText;
+    
 
     void Start()
     {
         quitMenu = quitMenu.GetComponent<Canvas>();
         startText = startText.GetComponent<Button>();
         exitText = exitText.GetComponent<Button>();
-
         quitMenu.enabled = false;
     }
 
@@ -39,13 +39,5 @@ public class MenuScript : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
-    }
-
-    void Update()
-    {
-        if(Input.GetKeyDown("space"))
-        {
-            Application.LoadLevel( "Main" );
-        }
     }
 }
